@@ -1,0 +1,67 @@
+%% Forming the table
+clc; clear all; close all;
+T = readtable("BC_35.csv");
+V = T.Properties.VariableNames; 
+M = mean(T{:,:});
+Md = median(T{:,:});
+Sd = std(T{:,:});
+Vr =var(T{:,:});
+Mn = min(T{:,:});
+Mx = max(T{:,:});
+Sk = skewness(T{:,:});
+Kr = kurtosis(T{:,:});
+
+Full_table = table(V', M',Md', Sd', Vr', Mn', Mx',Sk', Kr','VariableNames',{'Variable','Mean','Median',['' ...
+    'Std. Deviation'],'Variance','Minimum','Maximum','Skewness','Kurtosis'});
+writetable(Full_table,'fulltable.xlsx');
+%% Histogram Plots
+dim = [0.8 0.6 0.3 0.3];
+figure;
+str = {'Mean: 1.9103','Std. Deviation: 1.0513','Minimum: 1','Maximum: 4', 'Skewness: 0.7870', 'Kurtosis: 2.2925'};
+histogram(T{:,1},30);
+xlabel("Dchg/ChgCycle");
+ylabel("Frequency");
+annotation('textbox',dim,'String',str,'FitBoxToText','on');
+figure;
+str1 = {'Mean: 35','Std. Deviation: 0','Minimum: 35','Maximum: 35', 'Skewness: NaN', 'Kurtosis: NaN'};
+histogram(T{:,2},30);
+xlabel("BC");
+ylabel("Frequency");
+annotation('textbox',dim,'String',str1,'FitBoxToText','on');
+figure;
+str2 = {'Mean: 2.9565','Std. Deviation: 0.2026','Minimum: 1.99','Maximum: 3.53', 'Skewness: -1.2289', 'Kurtosis: 5.3988'};
+histogram(T{:,3},30);
+xlabel("Vact");
+ylabel("Frequency");
+annotation('textbox',dim,'String',str2,'FitBoxToText','on');
+figure;
+str3 = {'Mean: 38.2178','Std. Deviation: 21.0229','Minimum: 0.08','Maximum: 80.05', 'Skewness: 0.7859', 'Kurtosis: 2.2934'};
+histogram(T{:,4},30);
+xlabel("Discharge Current");
+ylabel("Frequency");
+annotation('textbox',dim,'String',str3,'FitBoxToText','on');
+figure;
+str4 = {'Mean: 0.0143','Std. Deviation: 0.0062','Minimum: 0','Maximum: 0.22', 'Skewness: 10.5243', 'Kurtosis: 346.69'};
+histogram(T{:,5},30);
+xlabel("Charge Current");
+ylabel("Frequency");
+annotation('textbox',dim,'String',str4,'FitBoxToText','on');
+figure;
+str5 = {'Mean: 10','Std. Deviation: 0','Minimum: 10','Maximum: 10', 'Skewness: NaN', 'Kurtosis: NaN'};
+histogram(T{:,6},30);
+xlabel("Charge/Discharge Cycle");
+ylabel("Frequency");
+annotation('textbox',dim,'String',str5,'FitBoxToText','on');
+figure;
+str6 = {'Mean: 9.6842','Std. Deviation: 5.5892','Minimum: 4.4400e-05','Maximum: 19.5018', 'Skewness: 1.6343e-05', 'Kurtosis: 1.8007'};
+histogram(T{:,7},30);
+xlabel("Ampere hours");
+ylabel("Frequency");
+annotation('textbox',dim,'String',str6,'FitBoxToText','on');
+figure;
+str7 = {'Mean: 35.8253','Std. Deviation: 1.6703','Minimum: 34.2055','Maximum: 41.4498', 'Skewness: 1.2989', 'Kurtosis: 3.7602'};
+histogram(T{:,8},30);
+xlabel("Average Temperature");
+ylabel("Frequency");
+annotation('textbox',dim,'String',str7,'FitBoxToText','on');
+
